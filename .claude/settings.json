@@ -11,7 +11,11 @@
       "Bash(node -e \"const icons = require\\('@element-plus/icons-vue'\\); console.log\\(Object.keys\\(icons\\).sort\\(\\).join\\('\\\\n'\\)\\)\")",
       "Bash(git init *)",
       "Bash(git remote *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m 'feat: 初始化项目 - 开源项目展示平台，含LuckyShell详情页 *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(git config *)"
     ]
   }
 }
