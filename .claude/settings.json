@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"D:/MyProgram/lucky-shell/\")",
+      "Read(//d/MyProgram/lucky-shell/**)",
+      "Bash(find \"D:/MyProgram/lucky-shell\" -maxdepth 3 -type f -name \"*.json\" -o -name \"*.js\" -o -name \"*.ts\" -o -name \"*.yaml\" -o -name \"*.yml\" -o -name \"*.toml\" -o -name \"*.config.*\" -o -name \"Makefile\" -o -name \"Dockerfile\" -o -name \".env*\" 2>/dev/null | head -80)",
+      "Bash(ls -la \"D:/MyProgram/lucky-shell/src/\" 2>/dev/null || echo \"No src directory\")",
+      "Read(//d/MyProgram/lucky-shell/src/**)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(node -e \"const icons = require\\('@element-plus/icons-vue'\\); console.log\\(Object.keys\\(icons\\).sort\\(\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)"
+    ]
+  }
+}
