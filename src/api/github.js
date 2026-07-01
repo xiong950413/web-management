@@ -5,7 +5,8 @@ const api = axios.create({
   baseURL: 'https://api.github.com',
   headers: {
     Accept: 'application/vnd.github.v3+json',
-    ...(config.github.token
+    // config.github 为可选配置，用可选链避免未配置时抛错
+    ...(config.github?.token
       ? { Authorization: `token ${config.github.token}` }
       : {}),
   },

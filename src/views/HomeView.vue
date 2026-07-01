@@ -1,36 +1,56 @@
 <script setup>
-import { ref, computed } from 'vue'
-import { useDark, useToggle } from '@vueuse/core'
-import { Search, Folder } from '@element-plus/icons-vue'
+import { ref, computed, onMounted } from 'vue'
+import {
+  refDebounced, useStorage, useTransition, TransitionPresets, onKeyStroke,
+} from '@vueuse/core'
+import { Folder, Search, Grid, List } from '@element-plus/icons-vue'
 import { config, projects } from '../config'
 import RepoCard from '../components/RepoCard.vue'
+import LangSwitcher from '../components/LangSwitcher.vue'
+import ThemeToggle from '../components/ThemeToggle.vue'
+import { useI18n } from '../i18n'
 
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+const { t, tc } = useI18n()
 
 const search = ref('')
+const debouncedSearch = refDebounced(search, 250)
 const selectedLanguage = ref('')
+const selectedTopic = ref('')
 const sortBy = ref('stars')
+const viewMode = useStorage('portfolio-view-mode', 'grid')
+
+// 按 "/" 聚焦搜索框（在输入框内时不拦截）
+const searchInput = ref(null)
+onKeyStroke('/', (e) => {
+  const tag = document.activeElement?.tagName
+  if (tag === 'INPUT' || tag === 'TEXTAREA') return
+  e.preventDefault()
+  searchInput.value?.focus()
+})
 
 const languages = computed(() => {
-  const langSet = new Set(projects.map(p => p.language).filter(Boolean))
-  return Array.from(langSet).sort()
+  const set = new Set(projects.map((p) => p.language).filter(Boolean))
+  return Array.from(set).sort()
 })
 
 const filteredProjects = computed(() => {
   let result = [...projects]
 
-  if (search.value) {
-    const q = search.value.toLowerCase()
-    result = result.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      (p.description || '').toLowerCase().includes(q) ||
-      (p.topics || []).some(t => t.toLowerCase().includes(q))
+  const q = debouncedSearch.value.trim().toLowerCase()
+  if (q) {
+    result = result.filter(
+      (p) =>
+        p.name.toLowerCase().includes(q) ||
+        tc(p.description).toLowerCase().includes(q) ||
+        (p.topics || []).some((topic) => topic.toLowerCase().includes(q))
     )
   }
 
   if (selectedLanguage.value) {
-    result = result.filter(p => p.language === selectedLanguage.value)
+    result = result.filter((p) => p.language === selectedLanguage.value)
+  }
+  if (selectedTopic.value) {
+    result = result.filter((p) => (p.topics || []).includes(selectedTopic.value))
   }
 
   switch (sortBy.value) {
@@ -51,81 +71,169 @@ const filteredProjects = computed(() => {
   return result
 })
 
-const totalStars = computed(() => projects.reduce((sum, p) => sum + (p.stars || 0), 0))
-const totalForks = computed(() => projects.reduce((sum, p) => sum + (p.forks || 0), 0))
+const hasFilters = computed(
+  () => !!(search.value || selectedLanguage.value || selectedTopic.value)
+)
+
+function clearFilters() {
+  search.value = ''
+  selectedLanguage.value = ''
+  selectedTopic.value = ''
+}
+
+function onFilterTopic(topic) {
+  selectedTopic.value = selectedTopic.value === topic ? '' : topic
+}
+
+// 统计数字滚动动画
+const totalStars = computed(() => projects.reduce((s, p) => s + (p.stars || 0), 0))
+const totalForks = computed(() => projects.reduce((s, p) => s + (p.forks || 0), 0))
+
+const projectsSource = ref(0)
+const starsSource = ref(0)
+const forksSource = ref(0)
+const tween = { duration: 1200, transition: TransitionPresets.easeOutCubic }
+const animatedProjects = useTransition(projectsSource, tween)
+const animatedStars = useTransition(starsSource, tween)
+const animatedForks = useTransition(forksSource, tween)
+
+onMounted(() => {
+  projectsSource.value = projects.length
+  starsSource.value = totalStars.value
+  forksSource.value = totalForks.value
+})
 </script>
 
 <template>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="header-avatar-icon">
-        <el-icon :size="48"><Folder /></el-icon>
+  <div class="page">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-aurora"></div>
+      <div class="hero-topbar">
+        <div class="control-group control-group--on-dark">
+          <LangSwitcher />
+          <ThemeToggle />
+        </div>
       </div>
-      <div class="header-info">
-        <h1>{{ config.site.title }}</h1>
-        <p class="bio">{{ config.site.description }}</p>
-        <div class="header-stats">
-          <div class="stat-item">
-            <span class="stat-value">{{ projects.length }}</span>
-            <span class="stat-label">项目</span>
+      <div class="hero-content container">
+        <div class="hero-badge">
+          <span class="hero-mark"><el-icon :size="18"><Folder /></el-icon></span>
+          <span class="hero-eyebrow">{{ t('home.eyebrow') }}</span>
+        </div>
+        <h1 class="hero-title">{{ tc(config.site.title) }}</h1>
+        <p class="hero-desc">{{ tc(config.site.description) }}</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-value">{{ Math.round(animatedProjects) }}</span>
+            <span class="hero-stat-label">{{ t('home.stats.projects') }}</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-value">{{ totalStars }}</span>
-            <span class="stat-label">Stars</span>
+          <div class="hero-stat">
+            <span class="hero-stat-value">{{ Math.round(animatedStars) }}</span>
+            <span class="hero-stat-label">{{ t('home.stats.stars') }}</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-value">{{ totalForks }}</span>
-            <span class="stat-label">Forks</span>
+          <div class="hero-stat">
+            <span class="hero-stat-value">{{ Math.round(animatedForks) }}</span>
+            <span class="hero-stat-label">{{ t('home.stats.forks') }}</span>
           </div>
         </div>
       </div>
-      <div class="header-actions">
-        <el-switch
-          v-model="isDark"
-          inline-prompt
-          active-text="🌙"
-          inactive-text="☀️"
-          style="--el-switch-on-color: #2d2d2d;"
+    </header>
+
+    <!-- Toolbar -->
+    <section class="toolbar">
+      <div class="toolbar-inner container">
+        <div class="toolbar-search">
+          <el-input
+            ref="searchInput"
+            v-model="search"
+            :placeholder="t('home.searchPlaceholder')"
+            :prefix-icon="Search"
+            clearable
+          />
+          <span class="search-kbd" v-show="!search">/</span>
+        </div>
+        <div class="toolbar-selects">
+          <el-select v-model="selectedLanguage" :placeholder="t('home.filterLanguage')" clearable>
+            <el-option v-for="lang in languages" :key="lang" :label="lang" :value="lang" />
+          </el-select>
+          <el-select v-model="sortBy" :placeholder="t('home.sortBy')">
+            <el-option :label="t('home.sort.stars')" value="stars" />
+            <el-option :label="t('home.sort.forks')" value="forks" />
+            <el-option :label="t('home.sort.updated')" value="updated" />
+            <el-option :label="t('home.sort.name')" value="name" />
+          </el-select>
+        </div>
+        <div class="toolbar-views">
+          <button
+            class="view-btn"
+            :class="{ 'is-active': viewMode === 'grid' }"
+            :aria-label="t('home.viewGrid')"
+            @click="viewMode = 'grid'"
+          >
+            <el-icon><Grid /></el-icon>
+          </button>
+          <button
+            class="view-btn"
+            :class="{ 'is-active': viewMode === 'list' }"
+            :aria-label="t('home.viewList')"
+            @click="viewMode = 'list'"
+          >
+            <el-icon><List /></el-icon>
+          </button>
+        </div>
+        <span class="toolbar-count">
+          {{ t('home.projectCount', { count: filteredProjects.length }) }}
+        </span>
+      </div>
+      <div class="active-filters container" v-if="selectedTopic">
+        <span class="filter-chip">
+          {{ t('home.tagFilter') }}: {{ selectedTopic }}
+          <button
+            class="filter-chip-close"
+            :aria-label="t('home.clearFilters')"
+            @click="selectedTopic = ''"
+          >✕</button>
+        </span>
+      </div>
+    </section>
+
+    <!-- Project Grid -->
+    <main class="repo-main container">
+      <div
+        v-if="filteredProjects.length"
+        class="repo-grid"
+        :class="{ 'repo-grid--list': viewMode === 'list' }"
+      >
+        <RepoCard
+          v-for="(project, i) in filteredProjects"
+          :key="project.name"
+          :repo="project"
+          v-reveal="Math.min(i * 40, 320)"
+          @filter-topic="onFilterTopic"
         />
       </div>
-    </div>
-  </header>
+      <div v-else class="empty-state">
+        <div class="empty-emoji">🔍</div>
+        <div class="empty-title">{{ t('home.emptyTitle') }}</div>
+        <div class="empty-desc">{{ t('home.emptyDesc') }}</div>
+        <el-button v-if="hasFilters" type="primary" round @click="clearFilters">
+          {{ t('home.clearFilters') }}
+        </el-button>
+      </div>
+    </main>
 
-  <!-- Filter Bar -->
-  <section class="filter-section">
-    <div class="filter-inner">
-      <el-input
-        v-model="search"
-        placeholder="搜索项目名称、描述或标签..."
-        :prefix-icon="Search"
-        clearable
-      />
-      <el-select v-model="selectedLanguage" placeholder="语言筛选" clearable>
-        <el-option v-for="lang in languages" :key="lang" :label="lang" :value="lang" />
-      </el-select>
-      <el-select v-model="sortBy" placeholder="排序方式">
-        <el-option label="按 Star 排序" value="stars" />
-        <el-option label="按 Fork 排序" value="forks" />
-        <el-option label="最近更新" value="updated" />
-        <el-option label="按名称排序" value="name" />
-      </el-select>
-      <span class="filter-count">共 {{ filteredProjects.length }} 个项目</span>
-    </div>
-  </section>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="site-footer-inner container">
+        <span>{{ t('footer.builtWith') }}</span>
+        <div class="footer-links">
+          <a href="https://vuejs.org" target="_blank" rel="noopener">Vue 3</a>
+          <a href="https://element-plus.org" target="_blank" rel="noopener">Element Plus</a>
+          <a href="https://vitejs.dev" target="_blank" rel="noopener">Vite</a>
+        </div>
+      </div>
+    </footer>
 
-  <!-- Project Grid -->
-  <main class="repo-section">
-    <div class="repo-grid" v-if="filteredProjects.length > 0">
-      <RepoCard v-for="project in filteredProjects" :key="project.name" :repo="project" />
-    </div>
-    <el-empty v-else description="没有找到匹配的项目" />
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <p>使用 Vue 3 + Element Plus 构建</p>
-  </footer>
-
-  <el-back-to-top :right="40" :bottom="40" />
+    <el-backtop :right="32" :bottom="32" />
+  </div>
 </template>
