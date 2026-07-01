@@ -26,10 +26,9 @@ const messages = {
 const FALLBACK_LOCALE = 'zh-CN'
 const STORAGE_KEY = 'portfolio-locale'
 
-/** 首次访问时根据浏览器语言推断默认语言 */
+/** 默认使用英语（首次访问且无本地缓存时生效） */
 function detectLocale() {
-  const nav = (navigator.language || navigator.userLanguage || FALLBACK_LOCALE).toLowerCase()
-  return nav.startsWith('zh') ? 'zh-CN' : 'en-US'
+  return 'en-US'
 }
 
 // 模块级单例：所有组件共享同一个响应式 locale

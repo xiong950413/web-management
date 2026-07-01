@@ -17,7 +17,7 @@ const debouncedSearch = refDebounced(search, 250)
 const selectedLanguage = ref('')
 const selectedTopic = ref('')
 const sortBy = ref('stars')
-const viewMode = useStorage('portfolio-view-mode', 'grid')
+const viewMode = useStorage('portfolio-view-mode-v2', 'list')
 
 // 按 "/" 聚焦搜索框（在输入框内时不拦截）
 const searchInput = ref(null)

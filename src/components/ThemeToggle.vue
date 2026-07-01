@@ -3,7 +3,7 @@ import { useDark, useToggle } from '@vueuse/core'
 import { Moon, Sunny } from '@element-plus/icons-vue'
 import { useI18n } from '../i18n'
 
-const isDark = useDark()
+const isDark = useDark({ initialValue: 'dark' })
 const toggleDark = useToggle(isDark)
 const { t } = useI18n()
 </script>
