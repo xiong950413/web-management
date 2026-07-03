@@ -9,6 +9,7 @@ import {
   Headset, VideoCamera, Search, List, MagicStick,
 } from '@element-plus/icons-vue'
 import { projects } from '../config'
+import { themeVars } from '../utils/theme'
 import { getLanguageColor } from '../utils/languages'
 import { useI18n } from '../i18n'
 import LangSwitcher from '../components/LangSwitcher.vue'
@@ -21,6 +22,7 @@ const { copy } = useClipboard({ legacy: true })
 
 const project = computed(() => projects.find((p) => p.name === route.params.name))
 const detail = computed(() => project.value?.detail)
+const themeStyle = computed(() => themeVars(project.value?.theme))
 
 const iconMap = {
   Monitor,
@@ -40,6 +42,10 @@ const iconMap = {
 /** 区块副标题：优先 config 双语，缺失则回退 i18n 默认文案 */
 function sectionSubtitle(key) {
   return tc(detail.value?.sections?.[key]?.subtitle) || t(`detail.sections.${key}.subtitle`)
+}
+
+function shotSrc(f) {
+  return `${import.meta.env.BASE_URL}screenshots/${f}`
 }
 
 function openLink(url) {
@@ -65,7 +71,7 @@ function shareProject() {
 </script>
 
 <template>
-  <div class="detail-page" v-if="project && detail">
+  <div class="detail-page" v-if="project && detail" :style="themeStyle">
     <!-- Top Nav -->
     <nav class="detail-nav">
       <div class="detail-nav-inner container">
@@ -118,6 +124,22 @@ function shareProject() {
             <span class="detail-hero-lang-dot" :style="{ background: getLanguageColor(project.language) }"></span>
             <span>{{ project.language }}</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="section detail-shots" v-if="detail.screenshots && detail.screenshots.length">
+      <div class="container">
+        <div
+          class="shot-gallery"
+          :class="{ 'shot-gallery--multi': detail.screenshots.length > 1 }"
+          v-reveal
+        >
+          <figure class="shot-frame" v-for="(shot, i) in detail.screenshots" :key="i">
+            <div class="shot-bar"><span></span><span></span><span></span></div>
+            <img :src="shotSrc(shot)" :alt="`${project.name} 界面截图 ${i + 1}`" loading="lazy" />
+          </figure>
         </div>
       </div>
     </section>

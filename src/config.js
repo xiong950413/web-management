@@ -54,12 +54,22 @@ export const projects = [
     language: 'TypeScript',
     topics: ['ssh', 'electron', 'react', 'sftp', 'terminal', 'xterm'],
     updatedAt: '2025-06-30',
+    theme: {
+      primary: '#3b82f6',
+      grad: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
+      heroBg: 'linear-gradient(160deg, #0b0b16 0%, #16183a 48%, #241155 100%)',
+      aurora:
+        'radial-gradient(40% 46% at 20% 30%, rgba(59,130,246,0.5), transparent 60%),' +
+        'radial-gradient(38% 44% at 84% 22%, rgba(139,92,246,0.5), transparent 60%),' +
+        'radial-gradient(46% 52% at 62% 82%, rgba(59,130,246,0.32), transparent 62%)',
+    },
     detail: {
       tagline: {
         'zh-CN': '高效、优雅的 Windows 桌面 SSH 客户端',
         'en-US': 'An efficient, elegant SSH client for Windows',
       },
       version: '2.0.2',
+      screenshots: ['lucky-shell-1.png', 'lucky-shell-2.png', 'lucky-shell-3.png'],
       downloadUrl: 'https://gitee.com/helixiong/lucky-shell/releases',
       releaseUrl: 'https://gitee.com/helixiong/lucky-shell/releases',
       systemRequirement: 'Windows 10/11 (x64)',
@@ -183,12 +193,22 @@ export const projects = [
     language: 'TypeScript',
     topics: ['electron', 'react', 'typescript', 'music-player', 'video-player'],
     updatedAt: '2026-06-14',
+    theme: {
+      primary: '#1DB954',
+      grad: 'linear-gradient(135deg, #1ed760 0%, #1DB954 55%, #109a44 100%)',
+      heroBg: 'linear-gradient(160deg, #071109 0%, #0c2d19 48%, #04170c 100%)',
+      aurora:
+        'radial-gradient(42% 48% at 22% 28%, rgba(29,185,84,0.5), transparent 60%),' +
+        'radial-gradient(36% 42% at 82% 20%, rgba(30,215,96,0.42), transparent 60%),' +
+        'radial-gradient(46% 52% at 64% 82%, rgba(16,154,68,0.42), transparent 62%)',
+    },
     detail: {
       tagline: {
         'zh-CN': 'Spotify 风格的本地音乐 / 视频播放器',
         'en-US': 'A Spotify-style local music & video player',
       },
       version: '1.0.0',
+      screenshots: ['melodia.png'],
       downloadUrl: 'https://gitee.com/helixiong/melodia/releases',
       releaseUrl: 'https://gitee.com/helixiong/melodia/releases',
       systemRequirement: 'Windows 10/11 (x64)',
@@ -305,12 +325,22 @@ export const projects = [
     language: 'JavaScript',
     topics: ['mysql', 'database', 'ai', 'llm', 'sql', 'electron', 'vue'],
     updatedAt: '2026-07-03',
+    theme: {
+      primary: '#7c5cf7',
+      grad: 'linear-gradient(135deg, #7c5cf7 0%, #a855f7 100%)',
+      heroBg: 'linear-gradient(160deg, #0d0a1a 0%, #1e123f 48%, #2a0f45 100%)',
+      aurora:
+        'radial-gradient(40% 46% at 20% 30%, rgba(124,92,247,0.55), transparent 60%),' +
+        'radial-gradient(36% 42% at 84% 22%, rgba(168,85,247,0.45), transparent 60%),' +
+        'radial-gradient(46% 52% at 64% 82%, rgba(217,70,239,0.38), transparent 62%)',
+    },
     detail: {
       tagline: {
         'zh-CN': '会聊天的 MySQL 管理与分析客户端',
         'en-US': 'A conversational MySQL management & analysis client',
       },
       version: '1.0.0',
+      screenshots: ['mysql-ai.png'],
       downloadUrl: 'https://gitee.com/helixiong/mysql-ai/releases',
       releaseUrl: 'https://gitee.com/helixiong/mysql-ai/releases',
       systemRequirement: 'Windows 10/11 (x64)',

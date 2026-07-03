@@ -1,9 +1,11 @@
 <script setup>
+import { computed } from 'vue'
 import { Star, Link as LinkIcon, View, ArrowRight, Share, Clock } from '@element-plus/icons-vue'
 import { useClipboard } from '@vueuse/core'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { getLanguageColor } from '../utils/languages'
+import { themeVars } from '../utils/theme'
 import { useI18n } from '../i18n'
 
 const props = defineProps({
@@ -14,6 +16,7 @@ defineEmits(['filter-topic'])
 const router = useRouter()
 const { t, tc } = useI18n()
 const { copy } = useClipboard({ legacy: true })
+const cardStyle = computed(() => themeVars(props.repo.theme))
 
 function openLink(url) {
   window.open(url, '_blank', 'noopener,noreferrer')
@@ -60,6 +63,7 @@ function timeAgo(dateStr) {
 <template>
   <article
     class="repo-card"
+    :style="cardStyle"
     :class="{ 'repo-card--clickable': repo.detail }"
     :role="repo.detail ? 'link' : undefined"
     :tabindex="repo.detail ? 0 : undefined"
