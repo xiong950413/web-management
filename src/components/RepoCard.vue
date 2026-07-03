@@ -67,7 +67,10 @@ function timeAgo(dateStr) {
     @keydown.enter="handleCardClick"
   >
     <div class="repo-card-top">
-      <div class="repo-card-icon">{{ repo.name.charAt(0) }}</div>
+      <div class="repo-card-icon">
+        <el-icon v-if="repo.icon"><component :is="repo.icon" /></el-icon>
+        <template v-else>{{ repo.name.charAt(0) }}</template>
+      </div>
       <div class="repo-card-heading">
         <a
           v-if="!repo.detail"

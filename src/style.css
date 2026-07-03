@@ -601,6 +601,12 @@ body {
   background: var(--brand-grad);
   box-shadow: 0 6px 16px -6px rgba(99, 102, 241, 0.7);
 }
+.repo-card-icon .el-icon {
+  font-size: 23px;
+}
+.repo-grid--list .repo-card-icon .el-icon {
+  font-size: 28px;
+}
 .repo-card-heading {
   flex: 1;
   min-width: 0;

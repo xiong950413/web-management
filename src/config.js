@@ -31,6 +31,7 @@ export const config = {
  *
  * 字段说明：
  *   name        - 项目名称（必填，单值）
+ *   icon        - 卡片图标（可选，Element Plus 图标名，如 'Monitor'/'Headset'；不填则显示名称首字母）
  *   description - 项目描述（必填，支持双语）
  *   url         - GitHub / Gitee 仓库地址（必填）
  *   homepage    - 在线演示地址（可选）
@@ -44,6 +45,7 @@ export const config = {
 export const projects = [
   {
     name: 'lucky-shell',
+    icon: 'Monitor',
     description: {
       'zh-CN': 'Windows 桌面 SSH 客户端，类似 FinalShell，支持 SSH 终端、SFTP 文件管理、服务器实时监控、本地终端、多会话管理、命令片段等功能。',
       'en-US': 'A Windows desktop SSH client (à la FinalShell) with SSH terminal, SFTP file management, real-time server monitoring, local terminal, multi-session management, command snippets and more.',
@@ -166,6 +168,128 @@ export const projects = [
         {
           key: 'Ctrl + Shift + V',
           action: { 'zh-CN': '粘贴', 'en-US': 'Paste' },
+        },
+      ],
+    },
+  },
+  {
+    name: 'melodia',
+    icon: 'Headset',
+    description: {
+      'zh-CN': '面向 Windows 桌面端的本地音乐 / 视频播放器，Spotify 风格暗色主题：左侧导航 + 卡片式内容区 + 底部常驻播放条，支持音视频播放、本地媒体库、歌单、播放队列与全局搜索。',
+      'en-US': 'A local music & video player for the Windows desktop with a Spotify-style dark theme — sidebar navigation, a card content area and a persistent bottom player bar. Audio/video playback, a local media library, playlists, a play queue and global search.',
+    },
+    url: 'https://gitee.com/helixiong/melodia',
+    language: 'TypeScript',
+    topics: ['electron', 'react', 'typescript', 'music-player', 'video-player'],
+    updatedAt: '2026-06-14',
+    detail: {
+      tagline: {
+        'zh-CN': 'Spotify 风格的本地音乐 / 视频播放器',
+        'en-US': 'A Spotify-style local music & video player',
+      },
+      version: '1.0.0',
+      downloadUrl: 'https://gitee.com/helixiong/melodia/releases',
+      releaseUrl: 'https://gitee.com/helixiong/melodia/releases',
+      systemRequirement: 'Windows 10/11 (x64)',
+      license: 'MIT',
+      // 各区块副标题（可选）；不填则回退到 i18n 默认文案
+      sections: {
+        features: {
+          subtitle: {
+            'zh-CN': '为本地曲库打造的沉浸式播放体验',
+            'en-US': 'An immersive playback experience for your local library',
+          },
+        },
+        tech: {
+          subtitle: {
+            'zh-CN': '现代技术栈，性能与体验兼得',
+            'en-US': 'A modern stack — performance meets experience',
+          },
+        },
+        shortcuts: {
+          subtitle: {
+            'zh-CN': '键盘优先，畅快控制播放',
+            'en-US': 'Keyboard-first, effortless playback control',
+          },
+        },
+        download: {
+          subtitle: {
+            'zh-CN': '获取最新版本，开始使用 Melodia',
+            'en-US': 'Get the latest Melodia release and start now',
+          },
+        },
+      },
+      features: [
+        {
+          icon: 'Headset',
+          title: { 'zh-CN': '音频播放', 'en-US': 'Audio Playback' },
+          desc: {
+            'zh-CN': '支持 mp3、flac、wav、aac、m4a、ogg、opus、wma 等主流格式，进度拖动、音量、随机、单曲 / 列表循环一应俱全。',
+            'en-US': 'Plays mainstream formats — mp3, flac, wav, aac, m4a, ogg, opus and wma — with seek, volume, shuffle and single / list repeat.',
+          },
+        },
+        {
+          icon: 'Video',
+          title: { 'zh-CN': '视频播放', 'en-US': 'Video Playback' },
+          desc: {
+            'zh-CN': '支持 mp4、webm、mkv、mov、avi 等格式，可全屏、画中画 (PiP)，或缩小为悬浮小窗一边看一边浏览。',
+            'en-US': 'Supports mp4, webm, mkv, mov and avi with fullscreen, picture-in-picture (PiP), or a floating mini-window while you keep browsing.',
+          },
+        },
+        {
+          icon: 'FolderOpen',
+          title: { 'zh-CN': '本地媒体库', 'en-US': 'Local Media Library' },
+          desc: {
+            'zh-CN': '添加文件夹递归扫描或直接添加文件，自动读取标题、艺人、专辑、时长与内嵌封面等标签。',
+            'en-US': 'Add folders for a recursive scan or pick files directly; tags like title, artist, album, duration and embedded cover art are read automatically.',
+          },
+        },
+        {
+          icon: 'List',
+          title: { 'zh-CN': '歌单与播放队列', 'en-US': 'Playlists & Queue' },
+          desc: {
+            'zh-CN': '新建 / 重命名 / 删除歌单，右键歌曲加入歌单；实时查看「正在播放 / 接下来」，可移除、清空、跳播。',
+            'en-US': 'Create / rename / delete playlists and add songs from the context menu; watch "Now Playing / Up Next" and remove, clear or jump within the queue.',
+          },
+        },
+        {
+          icon: 'Search',
+          title: { 'zh-CN': '搜索与多视图', 'en-US': 'Search & Multiple Views' },
+          desc: {
+            'zh-CN': '按歌曲 / 专辑 / 艺人全局即时筛选，主页、歌曲、专辑、艺人、视频多种浏览视图自由切换。',
+            'en-US': 'Instant global filtering by song / album / artist, with Home, Songs, Albums, Artists and Videos browsing views.',
+          },
+        },
+        {
+          icon: 'Sparkles',
+          title: { 'zh-CN': '现代外观', 'en-US': 'Modern Look' },
+          desc: {
+            'zh-CN': '无边框窗口 + 自定义标题栏、圆角卡片、绿色强调色与流畅的页面切换动效，媒体库与设置自动持久化。',
+            'en-US': 'A frameless window with a custom title bar, rounded cards, a green accent and smooth page transitions; library and settings persist automatically.',
+          },
+        },
+      ],
+      techStack: [
+        'Electron 42', 'React 19', 'TypeScript', 'electron-vite 5', 'Vite 7',
+        'Tailwind CSS 3', 'Zustand 5', 'React Router 7', 'framer-motion', 'music-metadata',
+      ],
+      shortcuts: [
+        {
+          key: 'Space',
+          action: { 'zh-CN': '播放 / 暂停', 'en-US': 'Play / Pause' },
+        },
+        {
+          key: '← / →',
+          action: { 'zh-CN': '快退 / 快进 5 秒', 'en-US': 'Seek backward / forward 5s' },
+        },
+        {
+          key: '↑ / ↓',
+          action: { 'zh-CN': '音量 增大 / 减小', 'en-US': 'Volume up / down' },
+        },
+        {
+          key: 'M',
+          action: { 'zh-CN': '静音 / 取消静音', 'en-US': 'Mute / Unmute' },
         },
       ],
     },

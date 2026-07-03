@@ -6,6 +6,7 @@ import { ElMessage } from 'element-plus'
 import {
   ArrowLeft, Monitor, FolderOpened, DataLine, Cpu, Grid, DocumentChecked,
   Download, Link as LinkIcon, Star, Share, CopyDocument,
+  Headset, VideoCamera, Search, List, MagicStick,
 } from '@element-plus/icons-vue'
 import { projects } from '../config'
 import { getLanguageColor } from '../utils/languages'
@@ -28,6 +29,12 @@ const iconMap = {
   Terminal: Cpu,
   Layers: Grid,
   Shield: DocumentChecked,
+  // 媒体 / 播放器图标
+  Headset,
+  Video: VideoCamera,
+  Search,
+  List,
+  Sparkles: MagicStick,
 }
 
 /** 区块副标题：优先 config 双语，缺失则回退 i18n 默认文案 */
