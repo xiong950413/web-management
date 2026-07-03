@@ -294,5 +294,135 @@ export const projects = [
       ],
     },
   },
+  {
+    name: 'mysql-ai',
+    icon: 'Coin',
+    description: {
+      'zh-CN': 'MySQL 数据库管理 + 多轮 AI 对话分析的 Windows 桌面客户端：连接管理、库表浏览、SQL 编辑执行、表数据增删改查、表设计器，内置 AI 助手可用自然语言写 / 解释 / 优化 SQL 并对话式分析数据库。',
+      'en-US': 'A Windows desktop client for MySQL management plus multi-turn AI analysis — connection management, schema browsing, a SQL editor, table-data CRUD and a table designer, with a built-in AI assistant that writes / explains / optimizes SQL and analyzes your database conversationally.',
+    },
+    url: 'https://gitee.com/helixiong/mysql-ai',
+    language: 'JavaScript',
+    topics: ['mysql', 'database', 'ai', 'llm', 'sql', 'electron', 'vue'],
+    updatedAt: '2026-07-03',
+    detail: {
+      tagline: {
+        'zh-CN': '会聊天的 MySQL 管理与分析客户端',
+        'en-US': 'A conversational MySQL management & analysis client',
+      },
+      version: '1.0.0',
+      downloadUrl: 'https://gitee.com/helixiong/mysql-ai/releases',
+      releaseUrl: 'https://gitee.com/helixiong/mysql-ai/releases',
+      systemRequirement: 'Windows 10/11 (x64)',
+      license: 'MIT',
+      // 各区块副标题（可选）；不填则回退到 i18n 默认文案
+      sections: {
+        features: {
+          subtitle: {
+            'zh-CN': '数据库管理与 AI 分析，一个客户端搞定',
+            'en-US': 'Database management and AI analysis in one client',
+          },
+        },
+        tech: {
+          subtitle: {
+            'zh-CN': '现代技术栈，性能与体验兼得',
+            'en-US': 'A modern stack — performance meets experience',
+          },
+        },
+        shortcuts: {
+          subtitle: {
+            'zh-CN': '高效操作，键盘优先',
+            'en-US': 'Work faster, keyboard-first',
+          },
+        },
+        download: {
+          subtitle: {
+            'zh-CN': '获取最新版本，开始使用 MySQL 智能 AI 助手',
+            'en-US': 'Get the latest release and start now',
+          },
+        },
+      },
+      features: [
+        {
+          icon: 'FolderOpen',
+          title: { 'zh-CN': '连接管理与库表浏览', 'en-US': 'Connections & Schema Browsing' },
+          desc: {
+            'zh-CN': '多连接管理与连接池，左侧库表树支持搜索、右键菜单（编辑 / 删除 / 查看 DDL / 复制 SELECT）与一键刷新。',
+            'en-US': 'Multi-connection management with pooling; a searchable schema tree with a right-click menu (edit / drop / view DDL / copy SELECT) and one-click refresh.',
+          },
+        },
+        {
+          icon: 'Terminal',
+          title: { 'zh-CN': 'SQL 编辑与执行', 'en-US': 'SQL Editor & Execution' },
+          desc: {
+            'zh-CN': '基于 CodeMirror 6：语法高亮、自动补全、查找替换（Ctrl+F）、注释切换、一键格式化，多 Tab 查询与执行历史。',
+            'en-US': 'Powered by CodeMirror 6 — syntax highlighting, autocomplete, find & replace (Ctrl+F), comment toggling, one-click formatting, multi-tab queries and execution history.',
+          },
+        },
+        {
+          icon: 'List',
+          title: { 'zh-CN': '表数据编辑与导出', 'en-US': 'Table Data Editing & Export' },
+          desc: {
+            'zh-CN': '数据网格支持行内编辑（脏单元格高亮）、批量删除、列点击排序、自定义 WHERE，结果集可 CSV / JSON 导出。',
+            'en-US': 'A data grid with inline editing (dirty-cell highlight), batch delete, click-to-sort columns and a custom WHERE; result sets export to CSV / JSON.',
+          },
+        },
+        {
+          icon: 'Layers',
+          title: { 'zh-CN': '表设计器', 'en-US': 'Table Designer' },
+          desc: {
+            'zh-CN': '可视化建表、改列与索引编辑，自动生成并预览 DDL 后再执行。',
+            'en-US': 'Visually create tables, edit columns and indexes, then generate and preview the DDL before running it.',
+          },
+        },
+        {
+          icon: 'Sparkles',
+          title: { 'zh-CN': 'AI 智能助手', 'en-US': 'AI Assistant' },
+          desc: {
+            'zh-CN': '用自然语言写 / 解释 / 优化 SQL，并对话式分析数据库；Markdown + SQL 高亮流式输出，可一键填入或追加到编辑器。兼容 DeepSeek / 通义 / 智谱 / OpenAI 等接口。',
+            'en-US': 'Write / explain / optimize SQL in natural language and analyze your database via chat; streamed Markdown with SQL highlighting, fillable into the editor in one click. Works with DeepSeek / Qwen / GLM / OpenAI-compatible APIs.',
+          },
+        },
+        {
+          icon: 'Shield',
+          title: { 'zh-CN': '安全加密', 'en-US': 'Secure Storage' },
+          desc: {
+            'zh-CN': '连接密码经 Electron safeStorage（Windows DPAPI）加密存储；行修改 / 删除走参数化查询，渲染层 contextIsolation 开启、数据库能力仅经受控 IPC 暴露。',
+            'en-US': 'Connection passwords are encrypted with Electron safeStorage (Windows DPAPI); row updates / deletes use parameterized queries, with contextIsolation on and DB access exposed only over controlled IPC.',
+          },
+        },
+      ],
+      techStack: [
+        'Electron 30', 'Vue 3', 'Vite 5', 'Element Plus',
+        'Pinia', 'CodeMirror 6', 'mysql2', 'electron-builder',
+      ],
+      shortcuts: [
+        {
+          key: 'Ctrl + Enter / F9',
+          action: { 'zh-CN': '运行当前 SQL（无选中则运行全部）', 'en-US': 'Run current SQL (or all if nothing is selected)' },
+        },
+        {
+          key: 'Ctrl + Shift + F',
+          action: { 'zh-CN': '格式化 SQL', 'en-US': 'Format SQL' },
+        },
+        {
+          key: 'Ctrl + /',
+          action: { 'zh-CN': '注释 / 取消注释', 'en-US': 'Toggle comment' },
+        },
+        {
+          key: 'Ctrl + T / W',
+          action: { 'zh-CN': '新建 / 关闭查询 Tab', 'en-US': 'New / close query tab' },
+        },
+        {
+          key: 'Ctrl + B / J',
+          action: { 'zh-CN': '切换 库表栏 / AI 面板', 'en-US': 'Toggle schema pane / AI panel' },
+        },
+        {
+          key: 'Ctrl + K',
+          action: { 'zh-CN': '聚焦库表搜索', 'en-US': 'Focus schema search' },
+        },
+      ],
+    },
+  },
   // 继续添加更多项目...
 ]
