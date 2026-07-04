@@ -592,5 +592,135 @@ export const projects = [
       ],
     },
   },
+  {
+    name: 'redis-mangment',
+    icon: 'Coin',
+    description: {
+      'zh-CN': '轻量美观的 Windows 桌面 Redis 管理工具：多连接管理、五大数据类型 CRUD、Key 前缀树浏览、命令行控制台、服务端管理(INFO/CLIENT/SLOWLOG/MONITOR)、Pub/Sub 与导入导出。由同名 uTools 插件整合为独立 Electron 桌面应用。',
+      'en-US': 'A lightweight, elegant Redis management tool for the Windows desktop — multi-connection management, CRUD for all five data types, a prefix-tree key browser, a command console, server management (INFO/CLIENT/SLOWLOG/MONITOR), Pub/Sub and import/export. Repackaged from the uTools plugin into a standalone Electron desktop app.',
+    },
+    url: 'https://gitee.com/helixiong/redis-mangment',
+    language: 'Vue',
+    topics: ['redis', 'electron', 'vue3', 'ioredis', 'database', 'gui', 'monaco'],
+    updatedAt: '2026-07-04',
+    theme: {
+      primary: '#DC382D',
+      grad: 'linear-gradient(135deg, #DC382D 0%, #f97316 100%)',
+      heroBg: 'linear-gradient(160deg, #0d1117 0%, #2a0f0d 48%, #4a1410 100%)',
+      aurora:
+        'radial-gradient(40% 46% at 20% 30%, rgba(220,56,45,0.55), transparent 60%),' +
+        'radial-gradient(36% 42% at 84% 22%, rgba(249,115,22,0.42), transparent 60%),' +
+        'radial-gradient(46% 52% at 64% 82%, rgba(220,56,45,0.30), transparent 62%)',
+    },
+    detail: {
+      tagline: {
+        'zh-CN': '轻量、美观、高效的桌面 Redis 管理工具',
+        'en-US': 'A lightweight, elegant and efficient desktop Redis manager',
+      },
+      version: '0.1.0',
+      downloadUrl: 'https://gitee.com/helixiong/redis-mangment/releases',
+      releaseUrl: 'https://gitee.com/helixiong/redis-mangment/releases',
+      systemRequirement: 'Windows 10/11 (x64)',
+      license: 'MIT',
+      sections: {
+        features: {
+          subtitle: {
+            'zh-CN': '连接、浏览、编辑、运维，一站搞定',
+            'en-US': 'Connect, browse, edit and operate — all in one',
+          },
+        },
+        tech: {
+          subtitle: {
+            'zh-CN': '现代技术栈，性能与体验兼得',
+            'en-US': 'A modern stack — performance meets experience',
+          },
+        },
+        shortcuts: {
+          subtitle: {
+            'zh-CN': '高效操作，键盘优先',
+            'en-US': 'Work faster, keyboard-first',
+          },
+        },
+        download: {
+          subtitle: {
+            'zh-CN': '获取最新版本，开始使用 Redis 助手',
+            'en-US': 'Get the latest release and start now',
+          },
+        },
+      },
+      features: [
+        {
+          icon: 'FolderOpen',
+          title: { 'zh-CN': '多连接与 Key 浏览', 'en-US': 'Connections & Key Browser' },
+          desc: {
+            'zh-CN': '侧边栏多连接管理、状态指示灯、一键测试/重连；左侧按 `:` 分段的前缀树懒加载 SCAN，顶部通配符模糊搜索。',
+            'en-US': 'Sidebar multi-connection management with status lights and one-click test / reconnect; a lazy-loading SCAN prefix tree split by `:` and wildcard fuzzy search.',
+          },
+        },
+        {
+          icon: 'Layers',
+          title: { 'zh-CN': '五大类型 CRUD', 'en-US': 'CRUD for All Types' },
+          desc: {
+            'zh-CN': 'String（Monaco 编辑器，Text/JSON/HEX，二进制无损）、Hash、List、Set、ZSet 的可视化增删改查与分页。',
+            'en-US': 'Visual CRUD with pagination for String (Monaco editor, Text/JSON/HEX, binary-safe), Hash, List, Set and ZSet.',
+          },
+        },
+        {
+          icon: 'Terminal',
+          title: { 'zh-CN': '命令行控制台', 'en-US': 'Command Console' },
+          desc: {
+            'zh-CN': '命令与键名自动补全、危险命令二次确认、历史持久化（上限 1w 条）、RESP 分色渲染。',
+            'en-US': 'Command and key-name autocomplete, double confirmation for dangerous commands, persisted history (up to 10k) and color-coded RESP rendering.',
+          },
+        },
+        {
+          icon: 'Activity',
+          title: { 'zh-CN': '服务端管理', 'en-US': 'Server Management' },
+          desc: {
+            'zh-CN': 'INFO 分段折叠、CLIENT LIST / KILL、SLOWLOG GET / RESET、CONFIG GET / SET、MONITOR 实时命令流。',
+            'en-US': 'Collapsible INFO sections, CLIENT LIST / KILL, SLOWLOG GET / RESET, CONFIG GET / SET and a live MONITOR command stream.',
+          },
+        },
+        {
+          icon: 'Search',
+          title: { 'zh-CN': 'Pub/Sub 与导入导出', 'en-US': 'Pub/Sub & Import/Export' },
+          desc: {
+            'zh-CN': '频道订阅/发布实时消息流；导出 JSON / Redis 命令脚本 / CSV，导入 JSON 批量 pipeline 写入。',
+            'en-US': 'Channel subscribe/publish with a live message stream; export to JSON / Redis command script / CSV and import JSON via batch pipeline.',
+          },
+        },
+        {
+          icon: 'Shield',
+          title: { 'zh-CN': '凭据加密存储', 'en-US': 'Encrypted Credentials' },
+          desc: {
+            'zh-CN': '连接密码经系统级 safeStorage（Windows DPAPI）加密后本地持久化；数据全部本地存储，不上云。',
+            'en-US': 'Connection passwords are encrypted with system safeStorage (Windows DPAPI) before local persistence; all data stays local, never uploaded.',
+          },
+        },
+      ],
+      techStack: [
+        'Electron 33', 'Vue 3', 'Vue Router', 'Pinia',
+        'Element Plus', 'Monaco Editor', 'ioredis', 'Vite 5', 'electron-builder',
+      ],
+      shortcuts: [
+        {
+          key: 'Ctrl + K',
+          action: { 'zh-CN': '打开命令面板', 'en-US': 'Open command palette' },
+        },
+        {
+          key: 'Ctrl + L',
+          action: { 'zh-CN': '聚焦到搜索', 'en-US': 'Focus search' },
+        },
+        {
+          key: 'Ctrl + T / W',
+          action: { 'zh-CN': '新建 / 关闭 Tab', 'en-US': 'New / close tab' },
+        },
+        {
+          key: 'Ctrl + /',
+          action: { 'zh-CN': '切换主题', 'en-US': 'Toggle theme' },
+        },
+      ],
+    },
+  },
   // 继续添加更多项目...
 ]
