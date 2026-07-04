@@ -454,5 +454,143 @@ export const projects = [
       ],
     },
   },
+  {
+    name: 'mailer',
+    icon: 'Promotion',
+    description: {
+      'zh-CN': '类似 Postman 的 Windows 桌面 HTTP 接口调试工具：请求发送、响应查看、集合管理、环境变量、历史记录、cURL 导入与代码生成。由同名 uTools 插件整合为独立 Electron 桌面应用。',
+      'en-US': 'A Postman-like HTTP API debugging tool for the Windows desktop — request sending, response viewing, collection management, environment variables, history, cURL import and code generation. Repackaged from the uTools plugin into a standalone Electron desktop app.',
+    },
+    url: 'https://gitee.com/helixiong/mailer',
+    language: 'Vue',
+    topics: ['electron', 'vue3', 'vite', 'http', 'api', 'postman', 'rest-client'],
+    updatedAt: '2026-07-04',
+    theme: {
+      primary: '#6366f1',
+      grad: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+      heroBg: 'linear-gradient(160deg, #0b0b16 0%, #16143a 48%, #241155 100%)',
+      aurora:
+        'radial-gradient(40% 46% at 20% 30%, rgba(99,102,241,0.55), transparent 60%),' +
+        'radial-gradient(36% 42% at 84% 22%, rgba(168,85,247,0.45), transparent 60%),' +
+        'radial-gradient(46% 52% at 64% 82%, rgba(99,102,241,0.32), transparent 62%)',
+    },
+    detail: {
+      tagline: {
+        'zh-CN': '高效、优雅的桌面 API 接口调试客户端',
+        'en-US': 'An efficient, elegant desktop API client',
+      },
+      version: '1.1.0',
+      downloadUrl: 'https://gitee.com/helixiong/mailer/releases',
+      releaseUrl: 'https://gitee.com/helixiong/mailer/releases',
+      systemRequirement: 'Windows 10/11 (x64)',
+      license: 'MIT',
+      sections: {
+        features: {
+          subtitle: {
+            'zh-CN': '接口调试的每一步，都在这里',
+            'en-US': 'Every step of API debugging, all in one place',
+          },
+        },
+        tech: {
+          subtitle: {
+            'zh-CN': '现代技术栈，性能与体验兼得',
+            'en-US': 'A modern stack — performance meets experience',
+          },
+        },
+        shortcuts: {
+          subtitle: {
+            'zh-CN': '高效操作，键盘优先',
+            'en-US': 'Work faster, keyboard-first',
+          },
+        },
+        download: {
+          subtitle: {
+            'zh-CN': '获取最新版本，开始使用 邮差API',
+            'en-US': 'Get the latest release and start now',
+          },
+        },
+      },
+      features: [
+        {
+          icon: 'Activity',
+          title: { 'zh-CN': '请求发送', 'en-US': 'Request Sending' },
+          desc: {
+            'zh-CN': '支持 GET / POST / PUT / DELETE / PATCH / HEAD / OPTIONS，由 Electron 主进程用 Node.js 发起，无 CORS 限制，可取消进行中的请求。',
+            'en-US': 'Supports GET / POST / PUT / DELETE / PATCH / HEAD / OPTIONS, sent by the Electron main process via Node.js with no CORS limits, and in-flight requests can be cancelled.',
+          },
+        },
+        {
+          icon: 'Layers',
+          title: { 'zh-CN': '请求构建', 'en-US': 'Request Building' },
+          desc: {
+            'zh-CN': 'URL、Query 参数、Headers、Body（JSON / form-data / x-www-form-urlencoded / raw）与 Auth（Bearer / Basic / API-Key），form-data 支持本地文件上传。',
+            'en-US': 'URL, query params, headers, body (JSON / form-data / x-www-form-urlencoded / raw) and auth (Bearer / Basic / API-Key), with local file upload in form-data.',
+          },
+        },
+        {
+          icon: 'Search',
+          title: { 'zh-CN': '响应展示', 'en-US': 'Response Viewing' },
+          desc: {
+            'zh-CN': 'JSON 树形高亮与搜索、状态码、耗时、大小、响应头与 Cookies，可在树形 / 原文视图间切换。',
+            'en-US': 'JSON tree highlighting and search, status code, time, size, response headers and cookies, switchable between tree and raw views.',
+          },
+        },
+        {
+          icon: 'FolderOpen',
+          title: { 'zh-CN': '集合与历史', 'en-US': 'Collections & History' },
+          desc: {
+            'zh-CN': '创建集合、保存与分组管理请求；自动记录请求历史并按日期分组，可恢复响应快照。',
+            'en-US': 'Create collections, save and group requests; request history is recorded automatically and grouped by date, with restorable response snapshots.',
+          },
+        },
+        {
+          icon: 'Terminal',
+          title: { 'zh-CN': '环境变量', 'en-US': 'Environment Variables' },
+          desc: {
+            'zh-CN': '多环境切换，{{variable}} 语法替换，支持嵌套（{{user.token}}）与动态变量（{{$randomUUID}}、{{$timestamp}} 等）。',
+            'en-US': 'Multi-environment switching with {{variable}} substitution, nested variables ({{user.token}}) and dynamic variables ({{$randomUUID}}, {{$timestamp}}, etc.).',
+          },
+        },
+        {
+          icon: 'Sparkles',
+          title: { 'zh-CN': 'cURL 导入与代码生成', 'en-US': 'cURL Import & Code Gen' },
+          desc: {
+            'zh-CN': '粘贴 cURL 命令快速创建请求，或将请求一键导出为 fetch / axios 等语言代码片段；多标签页并发调试。',
+            'en-US': 'Paste a cURL command to create a request quickly, or export a request to fetch / axios and other code snippets; multi-tab concurrent debugging.',
+          },
+        },
+      ],
+      techStack: [
+        'Electron 33', 'Vue 3', 'Vite 6', 'Pinia',
+        'electron-builder', 'Node.js http/https',
+      ],
+      shortcuts: [
+        {
+          key: 'Ctrl + Enter',
+          action: { 'zh-CN': '发送当前请求', 'en-US': 'Send current request' },
+        },
+        {
+          key: 'Ctrl + S',
+          action: { 'zh-CN': '保存到集合', 'en-US': 'Save to collection' },
+        },
+        {
+          key: 'Ctrl + T / W',
+          action: { 'zh-CN': '新建 / 关闭 Tab', 'en-US': 'New / close tab' },
+        },
+        {
+          key: 'Ctrl + L',
+          action: { 'zh-CN': '聚焦到 URL', 'en-US': 'Focus the URL' },
+        },
+        {
+          key: 'Ctrl + Shift + I',
+          action: { 'zh-CN': '从 cURL 导入', 'en-US': 'Import from cURL' },
+        },
+        {
+          key: 'Ctrl + Shift + C',
+          action: { 'zh-CN': '生成代码片段', 'en-US': 'Generate code snippet' },
+        },
+      ],
+    },
+  },
   // 继续添加更多项目...
 ]
